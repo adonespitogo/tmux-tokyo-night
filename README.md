@@ -1,18 +1,18 @@
 <div align="center">
   <h1>Tokyo Night Tmux Theme</h1>
-  
+
   <h4>A Tokyo Night tmux theme directly inspired from Tokyo Night vim theme</h4>
-    
+
   ---
-    
+
   **[<kbd> <br> Features <br> </kbd>][features]**
   **[<kbd> <br> Screenshots <br> </kbd>][screenshots]**
   **[<kbd> <br> Install <br> </kbd>][install]**
   **[<kbd> <br> Available Configurations <br> </kbd>][available-configurations]**
   **[<kbd> <br> Plugins <br> </kbd>][plugins]**
-  
+
   ---
-    
+
 </div>
 
 ## Features
@@ -93,6 +93,18 @@ Hit <kbd>prefix</kbd> + <kbd>I</kbd> to fetch the plugin and source it. You can 
 | `@theme_plugin_playerctl_accent_color`      |             |                   |         |
 | `@theme_plugin_playerctl_accent_color_icon` |             |                   |         |
 | `@theme_plugin_playerctl_format`            |             |                   |         |
+
+### mem-cpu-load
+
+> Prints informations about the current memory and cpu usage.
+
+| Configuration                               | Description | Avaliable Options | Default
+| ------------------------------------------- | ----------- | ----------------- | -------
+| `@theme_plugin_mem_cpu_load_icon`              |             |                   | 
+| `@theme_plugin_mem_cpu_load_accent_color`      |             |                   | blue7
+| `@theme_plugin_mem_cpu_load_accent_color_icon` |             |                   | blue0
+| `@theme_plugin_mem_cpu_load_args`            |      See `mem-cpu-load` [options](https://github.com/thewtex/tmux-mem-cpu-load?tab=readme-ov-file#configuring-tmux)       |                   | --colors --interval 2
+| `@theme_plugin_mem_cpu_load_bin`            | Path to the executable file             |                   | "tmux-mem-cpu-load"
 
 ### Example configuration
 
