@@ -53,54 +53,58 @@ tmux set-option -g status-right ""
 
 # Check if plugins array is empty before proceeding
 if [ "$theme_disable_plugins" -ne 1 ]; then
-	last_plugin="${plugins[-1]}"
-	is_last_plugin=0
+    last_plugin="${plugins[-1]}"
+    is_last_plugin=0
 
-	for plugin in "${plugins[@]}"; do
+    for plugin in "${plugins[@]}"; do
 
-		if [ ! -f "${CURRENT_DIR}/plugin/${plugin}.sh" ]; then
-			tmux set-option -ga status-right "${plugin}"
-		else
-			if [ "$plugin" == "$last_plugin" ]; then
-				is_last_plugin=1
-			fi
+        if [ ! -f "${CURRENT_DIR}/plugin/${plugin}.sh" ]; then
+            tmux set-option -ga status-right "${plugin}"
+        else
+            if [ "$plugin" == "$last_plugin" ]; then
+                is_last_plugin=1
+            fi
 
-			# shellcheck source=src/plugin/datetime.sh
-			plugin_script_path="${CURRENT_DIR}/plugin/${plugin}.sh"
-			plugin_execution_string="$(${plugin_script_path})"
-			. "$plugin_script_path"
+            # shellcheck source=src/plugin/datetime.sh
+            plugin_script_path="${CURRENT_DIR}/plugin/${plugin}.sh"
+            plugin_execution_string="$(${plugin_script_path})"
+            . "$plugin_script_path"
 
-			icon_var="plugin_${plugin}_icon"
-			accent_color_var="plugin_${plugin}_accent_color"
-			accent_color_icon_var="plugin_${plugin}_accent_color_icon"
+            icon_var="plugin_${plugin}_icon"
+            accent_color_var="plugin_${plugin}_accent_color"
+            accent_color_icon_var="plugin_${plugin}_accent_color_icon"
 
-			plugin_icon="${!icon_var}"
-			accent_color="${!accent_color_var}"
-			accent_color_icon="${!accent_color_icon_var}"
+            plugin_icon="${!icon_var}"
+            accent_color="${!accent_color_var}"
+            accent_color_icon="${!accent_color_icon_var}"
 
-			separator_start="#[fg=${PALLETE[$accent_color]},bg=${PALLETE[bg_highlight]}]${right_separator}#[none]"
-			separator_end="#[fg=${PALLETE[bg_highlight]},bg=${PALLETE[$accent_color]}]${right_separator}#[none]"
-			separator_icon_start="#[fg=${PALLETE[$accent_color_icon]},bg=${PALLETE[bg_highlight]}]${right_separator}#[none]"
-			separator_icon_end="#[fg=${PALLETE[$accent_color]},bg=${PALLETE[$accent_color_icon]}]${right_separator}#[none]"
+            separator_start="#[fg=${PALLETE[$accent_color]},bg=${PALLETE[bg_highlight]}]${right_separator}#[none]"
+            separator_end="#[fg=${PALLETE[bg_highlight]},bg=${PALLETE[$accent_color]}]${right_separator}#[none]"
+            separator_icon_start="#[fg=${PALLETE[$accent_color_icon]},bg=${PALLETE[bg_highlight]}]${right_separator}#[none]"
+            separator_icon_end="#[fg=${PALLETE[$accent_color]},bg=${PALLETE[$accent_color_icon]}]${right_separator}#[none]"
 
-			if [ "$plugin" == "datetime" ]; then
-				plugin_output="#[fg=${PALLETE[white]},bg=${PALLETE[$accent_color]}]${plugin_execution_string}#[none]"
-			else
-				plugin_output="#[fg=${PALLETE[white]},bg=${PALLETE[$accent_color]}]#($plugin_script_path)#[none]"
-			fi
-			plugin_output_string=""
+            if [ "$plugin" == "datetime" ]; then
+                plugin_output="#[fg=${PALLETE[white]},bg=${PALLETE[$accent_color]}]${plugin_execution_string}#[none]"
+            else
+                plugin_output="#[fg=${PALLETE[white]},bg=${PALLETE[$accent_color]}]#($plugin_script_path)#[none]"
+            fi
+            plugin_output_string=""
 
-			plugin_icon_output="${separator_icon_start}#[fg=${PALLETE[white]},bg=${PALLETE[$accent_color_icon]}]${plugin_icon}${separator_icon_end}"
+            if [ "${theme_enable_icons}" != "1" ]; then
+                plugin_icon=""
+            fi
 
-			if [ ! $is_last_plugin -eq 1 ] && [ "${#plugins[@]}" -gt 1 ]; then
-				plugin_output_string="${plugin_icon_output}${plugin_output} ${separator_end}"
-			else
-				plugin_output_string="${plugin_icon_output}${plugin_output} "
-			fi
+            plugin_icon_output="${separator_icon_start}#[fg=${PALLETE[white]},bg=${PALLETE[$accent_color_icon]}]${plugin_icon}${separator_icon_end}"
 
-			tmux set-option -ga status-right "$plugin_output_string"
-		fi
-	done
+            if [ ! $is_last_plugin -eq 1 ] && [ "${#plugins[@]}" -gt 1 ]; then
+                plugin_output_string="${plugin_icon_output}${plugin_output} ${separator_end}"
+            else
+                plugin_output_string="${plugin_icon_output}${plugin_output} "
+            fi
+
+            tmux set-option -ga status-right "$plugin_output_string"
+        fi
+    done
 fi
 
 tmux set-window-option -g window-status-separator ''
