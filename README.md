@@ -25,6 +25,7 @@
 - **Spt** - Show Spotify;
 - **Homebrew** - Show Homebrew;
 - **yay** - Show yay;
+- **mem-cpu-load** - Show memory and cpu load;
 
 ## Screenshots
 
@@ -46,8 +47,8 @@ Hit <kbd>prefix</kbd> + <kbd>I</kbd> to fetch the plugin and source it. You can 
 
 ## Available Configurations
 
-| Configuration                       | Description                               | Avaliable Options                                            | Default            |
-| ----------------------------------- | ----------------------------------------- | ------------------------------------------------------------ | ------------------ |
+| Configuration                       | Description                               | Avaliable Options                                                           | Default            |
+| ----------------------------------- | ----------------------------------------- | ------------------------------------------------------------| ------------------ |
 | `@theme_variation`                  | The tokyo night theme variation to be use | `night`, `storm`, `moon`                                     | `night`            |
 | `@theme_enable_icons`               | Switch icons in window list and plugins   | `1`, `0`                                                     | `1`                |
 | `@theme_active_pane_border_style`   |                                           |                                                              | `#737aa2`          |
@@ -56,7 +57,7 @@ Hit <kbd>prefix</kbd> + <kbd>I</kbd> to fetch the plugin and source it. You can 
 | `@theme_right_separator`            |                                           |                                                              | ``                |
 | `@theme_window_with_activity_style` |                                           |                                                              | `italics`          |
 | `@theme_status_bell_style`          |                                           |                                                              | `bold`             |
-| `@theme_plugins`                    |                                           | `datetime`, `weather`, `playerctl`, `spt`, `homebrew`, `yay` | `datetime,weather` |
+| `@theme_plugins`                    |                                           | `datetime`, `weather`, `playerctl`, `spt`, `homebrew`, `yay`, `mem_cpu_load` | `datetime,weather` |
 | `@theme_disable_plugins`            | Disables plugins                          | `1`, `0`                                                     | `0`                |
 
 ## Plugins
