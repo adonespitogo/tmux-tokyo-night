@@ -99,13 +99,15 @@ Hit <kbd>prefix</kbd> + <kbd>I</kbd> to fetch the plugin and source it. You can 
 
 > Prints informations about the current memory and cpu usage.
 
+Make sure to add `set -g @plugin 'thewtex/tmux-mem-cpu-load'` to your `.tmux.conf` file.
+
 | Configuration                               | Description | Avaliable Options | Default
 | ------------------------------------------- | ----------- | ----------------- | -------
 | `@theme_plugin_mem_cpu_load_icon`              |             |                   | 
 | `@theme_plugin_mem_cpu_load_accent_color`      |             |                   | blue7
 | `@theme_plugin_mem_cpu_load_accent_color_icon` |             |                   | blue0
 | `@theme_plugin_mem_cpu_load_args`            |      See `mem-cpu-load` [options](https://github.com/thewtex/tmux-mem-cpu-load?tab=readme-ov-file#configuring-tmux)       |                   | --colors --interval 2
-| `@theme_plugin_mem_cpu_load_bin`            | Path to the executable file             |                   | "tmux-mem-cpu-load"
+| `@theme_plugin_mem_cpu_load_bin`            | Path to the "tmux-mem-cpu-load" executable             |                   |
 
 ### Example configuration
 

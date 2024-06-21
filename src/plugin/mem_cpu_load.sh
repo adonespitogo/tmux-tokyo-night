@@ -5,7 +5,7 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 plugin_mem_cpu_load_icon=$(get_tmux_option "@theme_plugin_mem_cpu_load_icon" " ")
 plugin_mem_cpu_load_accent_color=$(get_tmux_option "@theme_plugin_mem_cpu_load_accent_color" "blue7")
 plugin_mem_cpu_load_accent_color_icon=$(get_tmux_option "@theme_plugin_mem_cpu_load_accent_color_icon" "blue0")
-plugin_mem_cpu_load_bin=$(get_tmux_option "@theme_plugin_mem_cpu_load_bin" "tmux-mem-cpu-load")
+plugin_mem_cpu_load_bin=$(get_tmux_option "@theme_plugin_mem_cpu_load_bin" "$ROOT_DIR/../../../tmux-mem-cpu-load/tmux-mem-cpu-load")
 
 # https://github.com/thewtex/tmux-mem-cpu-load?tab=readme-ov-file#configuring-tmux
 plugin_mem_cpu_load_args=$(get_tmux_option "@theme_plugin_mem_cpu_load_args" "--colors --interval 2")
