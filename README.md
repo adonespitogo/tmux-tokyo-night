@@ -17,6 +17,8 @@
 
 ## Features
 
+- [Transparency support](#Transparency-examples)
+
 ## Plugins
 
 - **Datetime** - Show datetime;
@@ -26,6 +28,7 @@
 - **Homebrew** - Show Homebrew;
 - **yay** - Show yay;
 - **mem-cpu-load** - Show memory and cpu load;
+- **battery** - Show battery;
 
 ## Screenshots
 
@@ -40,25 +43,24 @@
 Add plugin to the list of `TPM` plugins in `.tmux.conf`:
 
 ```
-set -g @plugin 'fabioluciano/tmux-tokyo-night'
+set -g @plugin 'adonespitogo/tmux-tokyo-night'
 ```
 
 Hit <kbd>prefix</kbd> + <kbd>I</kbd> to fetch the plugin and source it. You can now use the plugin.
 
 ## Available Configurations
 
-| Configuration                       | Description                               | Avaliable Options                                                           | Default            |
-| ----------------------------------- | ----------------------------------------- | ------------------------------------------------------------| ------------------ |
-| `@theme_variation`                  | The tokyo night theme variation to be use | `night`, `storm`, `moon`                                     | `night`            |
-| `@theme_enable_icons`               | Switch icons in window list and plugins   | `1`, `0`                                                     | `1`                |
-| `@theme_active_pane_border_style`   |                                           |                                                              | `#737aa2`          |
-| `@theme_inactive_pane_border_style` |                                           |                                                              | `#292e42`          |
-| `@theme_left_separator`             |                                           |                                                              | ``                |
-| `@theme_right_separator`            |                                           |                                                              | ``                |
-| `@theme_window_with_activity_style` |                                           |                                                              | `italics`          |
-| `@theme_status_bell_style`          |                                           |                                                              | `bold`             |
-| `@theme_plugins`                    |                                           | `datetime`, `weather`, `playerctl`, `spt`, `homebrew`, `yay`, `mem_cpu_load` | `datetime,weather` |
-| `@theme_disable_plugins`            | Disables plugins                          | `1`, `0`                                                     | `0`                |
+| Configuration                       | Description                               | Avaliable Options                                                       | Default            |
+| ----------------------------------- | ----------------------------------------- | ----------------------------------------------------------------------- | ------------------ |
+| `@theme_variation`                  | The tokyo night theme variation to be use | `night`, `storm`, `moon`                                                | `night`            |
+| `@theme_active_pane_border_style`   |                                           |                                                                         | `#737aa2`          |
+| `@theme_inactive_pane_border_style` |                                           |                                                                         | `#292e42`          |
+| `@theme_left_separator`             |                                           |                                                                         | ``                |
+| `@theme_right_separator`            |                                           |                                                                         | ``                |
+| `@theme_window_with_activity_style` |                                           |                                                                         | `italics`          |
+| `@theme_status_bell_style`          |                                           |                                                                         | `bold`             |
+| `@theme_plugins`                    |                                           | `datetime`, `weather`, `playerctl`, `spt`, `homebrew`, `yay`, `mem_cpu_load`, `battery` | `datetime,weather` |
+| `@theme_disable_plugins`            | Disables plugins                          | `1`, `0`                                                                | `0`                |
 
 ## Plugins
 
@@ -68,7 +70,7 @@ Hit <kbd>prefix</kbd> + <kbd>I</kbd> to fetch the plugin and source it. You can 
 
 | Configuration                              | Description | Avaliable Options | Default |
 | ------------------------------------------ | ----------- | ----------------- | ------- |
-| `@theme_plugin_datetime_icon`              |             |                   |         |
+| `@theme_plugin_datetime_icon`              |             | Any character 📅  | Nerd Font 'Calendar' icon        |
 | `@theme_plugin_datetime_accent_color`      |             |                   |         |
 | `@theme_plugin_datetime_accent_color_icon` |             |                   |         |
 | `@theme_plugin_datetime_format`            |             |                   |         |
@@ -79,10 +81,16 @@ Hit <kbd>prefix</kbd> + <kbd>I</kbd> to fetch the plugin and source it. You can 
 
 | Configuration                             | Description | Avaliable Options | Default |
 | ----------------------------------------- | ----------- | ----------------- | ------- |
-| `@theme_plugin_weather_icon`              |             |                   |         |
+| `@theme_plugin_weather_icon`              |             | Any character 🌡️  |  Font Awesome 'Cloud' icon        |
 | `@theme_plugin_weather_accent_color`      |             |                   |         |
 | `@theme_plugin_weather_accent_color_icon` |             |                   |         |
-| `@theme_plugin_weather_format`            |             |                   |         |
+| `@theme_plugin_weather_format`            | Format for displaying weather information | `%t`, `%c`, `%h`, `%w` (temperature, condition, humidity, wind) | `%t+H:%h` |
+| `@theme_plugin_weather_location`          | Location for weather (city/country)   | `"City, Country"`  | IP-based location detection |
+
+#### Example
+  ```
+  set -g @theme_plugin_weather_location 'Blacksburg, United States'
+  ```
 
 ### Playerctl
 
@@ -109,11 +117,28 @@ Make sure to add `set -g @plugin 'thewtex/tmux-mem-cpu-load'` to your `.tmux.con
 | `@theme_plugin_mem_cpu_load_args`            |      See `mem-cpu-load` [options](https://github.com/thewtex/tmux-mem-cpu-load?tab=readme-ov-file#configuring-tmux)       |                   | --colors --interval 2
 | `@theme_plugin_mem_cpu_load_bin`            | Path to the "tmux-mem-cpu-load" executable             |                   |
 
+### Battery
+
+Shows battery charging status (charging or discharging) and battery percentage.
+
+| Configuration                                    | Description                        | Avaliable Options | Default  |
+| ------------------------------------------------ | ---------------------------------- | ----------------- | -------- |
+| `@theme_plugin_battery_charging_icon`            | Icon to display when charging      | Any character     |         |
+| `@theme_plugin_battery_discharging`              | Icon to display when on battery    | Any character     | 󰁹        |
+| `@theme_plugin_battery_red_threshold`            | Show in red when below this %      | 0-100             | 10       |
+| `@theme_plugin_battery_yellow_threshold`         | Show in yellow when below this %   | 0-100             | 30       |
+| `@theme_plugin_battery_red_accent_color`         | Color when < red threshold         | Palette color     | red      |
+| `@theme_plugin_battery_red_accent_color_icon`    | Icon color when < red threshold    | Palette color     | magenta2 |
+| `@theme_plugin_battery_yellow_accent_color`      | Color when < yellow threshold      | Palette color     | yellow   |
+| `@theme_plugin_battery_yellow_accent_color_icon` | Icon color when < yellow threshold | Palette color     | orange   |
+| `@theme_plugin_battery_green_accent_color`       | Color when > yellow threshold      | Palette color     | blue7    |
+| `@theme_plugin_battery_green_accent_color_icon`  | Icon color when > yellow threshold | Palette color     | blue0    |
+
 ### Example configuration
 
 tmux.conf
 
-```
+```bash
 set -g @plugin 'tmux-plugins/tpm'
 
 set -g @plugin 'tmux-plugins/tmux-pain-control'
@@ -130,6 +155,33 @@ set -g @theme_plugins 'datetime,weather,playerctl,yay'
 
 run '~/.tmux/plugins/tpm/tpm'
 ```
+
+### Transparency examples
+
+Enable transparency with default separators:
+
+```bash
+### Enable transparency
+set -g @theme_transparent_status_bar 'true'
+```
+
+![Screenshot 2024-09-07 at 12 41 12](https://github.com/user-attachments/assets/56287ccb-9be9-4aa5-a2ab-ec48d2b2d08a)
+
+####
+
+Can also use custom separators:
+
+```bash
+### Enable transparency
+set -g @theme_left_separator ''
+set -g @theme_right_separator ''
+set -g @theme_transparent_status_bar 'true'
+set -g @theme_transparent_left_separator_inverse ''
+set -g @theme_transparent_right_separator_inverse ''
+
+```
+
+![Screenshot 2024-09-07 at 12 39 35](https://github.com/user-attachments/assets/a33417b1-34e0-4212-952e-7ef1e240e943)
 
 [features]: #features
 [screenshots]: #screenshots
